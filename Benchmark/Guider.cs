@@ -1,5 +1,5 @@
 ﻿using System;
-namespace SpanBenchmark
+namespace GuidBenchmark
 {
 	public static class Guider
 	{

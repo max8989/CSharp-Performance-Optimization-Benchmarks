@@ -1,6 +1,6 @@
 ﻿using BenchmarkDotNet.Attributes;
 
-namespace SpanBenchmark
+namespace GuidBenchmark
 {
     [MemoryDiagnoser(false)]
 	public class GuiderBenchmarks

@@ -1,5 +1,7 @@
-﻿using BenchmarkDotNet.Running;
-using SpanBenchmark;
+﻿using EnumBenchmark;
+using BenchmarkDotNet.Running;
+using GuidBenchmark;
 
-BenchmarkRunner.Run<GuiderBenchmarks>();
+//BenchmarkRunner.Run<EnumBenchmarks>();
+//BenchmarkRunner.Run<GuiderBenchmarks>();
 
