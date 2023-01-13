@@ -21,7 +21,6 @@ namespace Benchmark
             ReadOnlySpan<char> inputSpan = INPUT.AsSpan();
             Span<char> comparisonSpan = new (new[] { 'M', 'A', 'X' });
 
-            
             for (int i = 0; i < comparisonSpan.Length; i++)
             {
                 if (comparisonSpan[i] != inputSpan[i])
@@ -36,10 +35,7 @@ namespace Benchmark
         public bool StartsWith_SpanStackAlloc()
         {
             ReadOnlySpan<char> inputSpan = INPUT.AsSpan();
-            Span<char> comparisonSpan = stackalloc char[3];
-            comparisonSpan[0] = 'M';
-            comparisonSpan[1] = 'A';
-            comparisonSpan[2] = 'X';
+            Span<char> comparisonSpan = stackalloc char[] { 'M', 'A', 'X'};
 
             for (int i = 0; i < comparisonSpan.Length; i++)
             {
