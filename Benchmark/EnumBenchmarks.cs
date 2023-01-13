@@ -22,7 +22,7 @@ namespace EnumBenchmark
         }
 
         [Benchmark]
-        public string EnumToStringOptimized()
+        public string EnumToString_Swtich()
         {
             var test = EnumTest.Dotnet;
             return test.EnumToString();

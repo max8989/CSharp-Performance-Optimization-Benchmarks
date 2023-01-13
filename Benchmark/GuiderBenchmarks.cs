@@ -2,7 +2,7 @@
 
 namespace GuidBenchmark
 {
-    [MemoryDiagnoser(false)]
+    [MemoryDiagnoser]
 	public class GuiderBenchmarks
 	{
         private static readonly Guid TestGuidId = Guid.Parse("25fa07b1-cebd-4c78-b23a-a17b3f4845ce");
