@@ -1,4 +1,6 @@
 ﻿using BenchmarkDotNet.Attributes;
+using System.Buffers.Text;
+using System.Runtime.InteropServices;
 
 namespace GuidBenchmark
 {
@@ -15,7 +17,7 @@ namespace GuidBenchmark
         }
 
         [Benchmark]
-        public Guid ToGuidFromStringOptimized()
+        public Guid ToGuidFromString_Span()
         {
             return Guider.ToGuidFromStringOp(TestIdAsString);
         }
@@ -24,6 +26,12 @@ namespace GuidBenchmark
         public string ToStingFromGuid()
         {
             return Guider.ToStringFromGuid(TestGuidId);
+        }
+
+        [Benchmark]
+        public string ToStingFromGuid_Span()
+        {
+            return Guider.ToStringFromGuidOp(TestGuidId);
         }
     }
 
@@ -66,6 +74,28 @@ namespace GuidBenchmark
             Span<byte> idBytes = stackalloc byte[16];
             Convert.TryFromBase64Chars(base64Chars, idBytes, out _);
             return new Guid(idBytes);
+        }
+
+        public static string ToStringFromGuidOp(Guid id)
+        {
+            Span<byte> idBytes = stackalloc byte[16];
+            Span<byte> base64Bytes = stackalloc byte[24];
+
+            MemoryMarshal.TryWrite(idBytes, ref id);
+            Base64.EncodeToUtf8(idBytes, base64Bytes, out _, out _);
+
+            Span<char> finalChars = stackalloc char[22];
+            for (int i = 0; i < 22; i++)
+            {
+                finalChars[i] = base64Bytes[i] switch
+                {
+                    (byte) '/' => '-',
+                    (byte) '+' => '_',
+                    _ => (char) base64Bytes[i]
+                };
+            }
+
+            return new string(finalChars);
         }
     }
 }
