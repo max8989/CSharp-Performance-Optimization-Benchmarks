@@ -36,10 +36,10 @@ namespace EnumBenchmark
             return enumTest switch
             {
                 EnumTest.Yeeyee => nameof(EnumTest.Yeeyee),
-                EnumTest.MySQL => nameof(EnumTest.Yeeyee),
-                EnumTest.Dotnet => nameof(EnumTest.Yeeyee),
-                EnumTest.HelloWorld => nameof(EnumTest.Yeeyee),
-                EnumTest.Linux => nameof(EnumTest.Yeeyee),
+                EnumTest.MySQL => nameof(EnumTest.MySQL),
+                EnumTest.Dotnet => nameof(EnumTest.Dotnet),
+                EnumTest.HelloWorld => nameof(EnumTest.HelloWorld),
+                EnumTest.Linux => nameof(EnumTest.Linux),
                 _ => throw new NotSupportedException()
             };
         }
