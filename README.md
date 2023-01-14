@@ -9,11 +9,12 @@
 |   EnumToString_Swtich |  3.890 ns | 0.1341 ns | 0.1744 ns |      - |         - |
 
 ## Guid (Span)
-|                    Method |      Mean |    Error |    StdDev |    Median | Allocated |
-|-------------------------- |----------:|---------:|----------:|----------:|----------:|
-|          ToGuidFromString | 245.44 ns | 4.979 ns |  7.751 ns | 248.88 ns |     112 B |
-| ToGuidFromStringOptimized |  98.41 ns | 9.571 ns | 28.220 ns |  88.10 ns |         - |
-|           ToStingFromGuid | 142.35 ns | 2.718 ns |  4.832 ns | 140.67 ns |     184 B |
+|                Method |      Mean |    Error |   StdDev |   Gen0 | Allocated |
+|---------------------- |----------:|---------:|---------:|-------:|----------:|
+|      ToGuidFromString |  94.61 ns | 1.890 ns | 2.022 ns | 0.0267 |     112 B |
+| ToGuidFromString_Span |  60.12 ns | 1.215 ns | 1.664 ns |      - |         - |
+|       ToStingFromGuid | 110.19 ns | 2.224 ns | 3.045 ns | 0.0439 |     184 B |
+|  ToStingFromGuid_Span |  60.48 ns | 1.233 ns | 1.467 ns | 0.0172 |      72 B |
 
 ## String StartsWith
 |                    Method |      Mean |     Error |    StdDev |    Median |   Gen0 | Allocated |
