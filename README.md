@@ -23,7 +23,7 @@
 |           StartsWith_Span |  7.541 ns | 0.2191 ns | 0.6355 ns |  7.301 ns | 0.0076 |      32 B |
 | StartsWith_SpanStackAlloc |  2.799 ns | 0.0584 ns | 0.0518 ns |  2.813 ns |      - |         - |
 
-## Search Collection<int> (10_000 lookup values)
+## Search Collection<int> (10,000 lookup values)
 |                       Method |       Mean |     Error |    StdDev |     Median |   Gen0 | Allocated |
 |----------------------------- |-----------:|----------:|----------:|-----------:|-------:|----------:|
 |                     Contains | 5,218.0 us | 100.02 us | 111.17 us | 5,210.0 us |      - |    4103 B |
@@ -32,7 +32,7 @@
 |            BinarySearch_Span | 1,263.0 us |  25.04 us |  50.59 us | 1,271.7 us |      - |    4098 B |
 | BinarySearch_Span_StackAlloc | 1,463.1 us |  37.52 us | 107.65 us | 1,473.4 us |      - |       2 B |
   
-## Search Collection<int> (5000 lookup values)
+## Search Collection<int> (5,000 lookup values)
 |                       Method |      Mean |    Error |   StdDev |   Gen0 |   Gen1 | Allocated |
 |----------------------------- |----------:|---------:|---------:|-------:|-------:|----------:|
 |                     Contains | 130.79 us | 1.783 us | 1.751 us | 3.1738 |      - |   20096 B |
