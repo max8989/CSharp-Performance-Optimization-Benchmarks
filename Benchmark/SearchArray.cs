@@ -11,7 +11,7 @@ public class SearchArray
     public SearchArray()
     {
         testData = CreateData(100_000);
-        lookupData = CreateData(1000);
+        lookupData = CreateData(5_000);
     }
     
     [Benchmark]
@@ -19,7 +19,10 @@ public class SearchArray
     {
         var lookupDataInt = lookupData.Select(x => x.Id).ToArray();
         
-        testData.Where(x => lookupDataInt.Contains(x.Id)).ToList();
+        //testData.Where(x => lookupDataInt.Contains(x.Id)).ToList();
+        for (int i = 0; i < testData.Count; i++)
+            if(lookupDataInt.Contains(testData[i].Id))
+                testData.RemoveAt(i);
     }
     
     [Benchmark]
@@ -27,7 +30,10 @@ public class SearchArray
     {
         var lookupDataInt = lookupData.Select(x => x.Id).ToHashSet();
         
-        testData.Where(x => lookupDataInt.Contains(x.Id)).ToList();
+        //testData.Where(x => lookupDataInt.Contains(x.Id)).ToList();
+        for (int i = 0; i < testData.Count; i++)
+            if(lookupDataInt.Contains(testData[i].Id))
+                testData.RemoveAt(i);
     }
     
     [Benchmark]
@@ -35,7 +41,10 @@ public class SearchArray
     {
         var lookupDataInt = lookupData.Select(x => x.Id).ToArray();
             
-        testData.Where(x => lookupDataInt.Contains(x.Id)).ToList();
+        //testData.Where(x => lookupDataInt.Contains(x.Id)).ToList();
+        for (int i = 0; i < testData.Count; i++)
+            if(Array.BinarySearch(lookupDataInt, testData[i].Id) > 0)
+                testData.RemoveAt(i);
     }
     
     [Benchmark]
