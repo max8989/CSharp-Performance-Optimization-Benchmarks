@@ -22,3 +22,12 @@
 |                StarstWith | 37.673 ns | 0.7501 ns | 0.7367 ns | 37.693 ns |      - |         - |
 |           StartsWith_Span |  7.541 ns | 0.2191 ns | 0.6355 ns |  7.301 ns | 0.0076 |      32 B |
 | StartsWith_SpanStackAlloc |  2.799 ns | 0.0584 ns | 0.0518 ns |  2.813 ns |      - |         - |
+
+## Search Collection<int>
+|                               Method |     Mean |    Error |   StdDev |      Gen0 |      Gen1 |      Gen2 | Allocated |
+|------------------------------------- |---------:|---------:|---------:|----------:|----------:|----------:|----------:|
+|                    SearchWithHashSet | 17.66 ms | 0.346 ms | 0.650 ms | 1375.0000 | 1375.0000 | 1156.2500 |   8.12 MB |
+|               SearchWithBinarySearch | 87.64 ms | 1.742 ms | 2.661 ms | 1000.0000 | 1000.0000 |  833.3333 |   6.65 MB |
+|           SearchWithBinarySearchSpan | 20.03 ms | 0.300 ms | 0.266 ms |  968.7500 |  843.7500 |  500.0000 |   5.65 MB |
+| SearchWithBinarySearchSpanStackAlloc | 20.21 ms | 0.200 ms | 0.187 ms |  968.7500 |  843.7500 |  500.0000 |   5.61 MB |
+
