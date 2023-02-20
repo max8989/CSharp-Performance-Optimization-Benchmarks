@@ -1,10 +1,9 @@
 ﻿using Benchmark;
 using BenchmarkDotNet.Running;
-using EnumBenchmark;
-using GuidBenchmark;
+
 
 //BenchmarkRunner.Run<EnumBenchmarks>();
-BenchmarkRunner.Run<GuiderBenchmarks>();
+BenchmarkRunner.Run<SearchArray>();
 //BenchmarkRunner.Run<StringBenchmarks>();
 
 //var stringBenchmark = new StringBenchmarks();
