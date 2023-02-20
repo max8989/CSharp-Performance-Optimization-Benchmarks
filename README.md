@@ -24,10 +24,12 @@
 | StartsWith_SpanStackAlloc |  2.799 ns | 0.0584 ns | 0.0518 ns |  2.813 ns |      - |         - |
 
 ## Search Collection<int>
-|                               Method |     Mean |    Error |   StdDev |      Gen0 |      Gen1 |      Gen2 | Allocated |
-|------------------------------------- |---------:|---------:|---------:|----------:|----------:|----------:|----------:|
-|                    SearchWithHashSet | 17.66 ms | 0.346 ms | 0.650 ms | 1375.0000 | 1375.0000 | 1156.2500 |   8.12 MB |
-|               SearchWithBinarySearch | 87.64 ms | 1.742 ms | 2.661 ms | 1000.0000 | 1000.0000 |  833.3333 |   6.65 MB |
-|           SearchWithBinarySearchSpan | 20.03 ms | 0.300 ms | 0.266 ms |  968.7500 |  843.7500 |  500.0000 |   5.65 MB |
-| SearchWithBinarySearchSpanStackAlloc | 20.21 ms | 0.200 ms | 0.187 ms |  968.7500 |  843.7500 |  500.0000 |   5.61 MB |
+|                       Method |      Mean |     Error |    StdDev |     Gen0 |     Gen1 |     Gen2 | Allocated |
+|----------------------------- |----------:|----------:|----------:|---------:|---------:|---------:|----------:|
+|                     Contains | 15.723 ms | 0.3101 ms | 0.4348 ms | 468.7500 | 468.7500 | 468.7500 | 2102116 B |
+|                      HashSet |  3.369 ms | 0.0599 ms | 0.0531 ms | 343.7500 | 320.3125 | 320.3125 | 2127411 B |
+|                 BinarySearch | 14.408 ms | 0.1217 ms | 0.1079 ms | 500.0000 | 484.3750 | 484.3750 | 2102114 B |
+|            BinarySearch_Span |  1.224 ms | 0.0244 ms | 0.0514 ms |        - |        - |        - |    4098 B |
+| BinarySearch_Span_StackAlloc |  1.292 ms | 0.0258 ms | 0.0431 ms |        - |        - |        - |       2 B |
+
 
