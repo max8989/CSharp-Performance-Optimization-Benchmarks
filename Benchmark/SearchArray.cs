@@ -6,34 +6,41 @@ namespace Benchmark;
 [MemoryDiagnoser]
 public class SearchArray
 {
-    [Benchmark]
-    public void SearchWithHashSet()
+    private List<TestClass> testData;
+    private List<TestClass> lookupData;
+    public SearchArray()
     {
-        var testData = CreateData(100_000);
-        var lookupData = CreateData(10_000);
-        
-        var lookupDataInt = testData.Select(x => x.Id).ToHashSet();
+        testData = CreateData(100_000);
+        lookupData = CreateData(1000);
+    }
+    
+    [Benchmark]
+    public void Contains()
+    {
+        var lookupDataInt = lookupData.Select(x => x.Id).ToArray();
         
         testData.Where(x => lookupDataInt.Contains(x.Id)).ToList();
     }
     
     [Benchmark]
-    public void SearchWithBinarySearch()
+    public void HashSet()
     {
-        var testData = CreateData(100_000);
-        var lookupData = CreateData(10_000);
-
+        var lookupDataInt = lookupData.Select(x => x.Id).ToHashSet();
+        
+        testData.Where(x => lookupDataInt.Contains(x.Id)).ToList();
+    }
+    
+    [Benchmark]
+    public void BinarySearch()
+    {
         var lookupDataInt = lookupData.Select(x => x.Id).ToArray();
             
         testData.Where(x => lookupDataInt.Contains(x.Id)).ToList();
     }
     
     [Benchmark]
-    public void SearchWithBinarySearchSpan()
+    public void BinarySearch_Span()
     {
-        var testData = CreateData(100_000);
-        var lookupData = CreateData(10_000);
-
         Span<int> lookupDataInt =  lookupData.Select(x => x.Id).ToArray().AsSpan();
         
         for (int i = 0; i < testData.Count; i++)
@@ -42,11 +49,8 @@ public class SearchArray
     }
     
     [Benchmark]
-    public void SearchWithBinarySearchSpanStackAlloc()
+    public void BinarySearch_Span_StackAlloc()
     {
-        var testData = CreateData(100_000);
-        var lookupData = CreateData(10_000);
-
         Span<int> lookupDataInt = stackalloc int[lookupData.Count];
         for (int i = 0; i < lookupData.Count - 1; i++)
             lookupDataInt[i] = lookupData[i].Id;
@@ -60,15 +64,15 @@ public class SearchArray
     
     public List<TestClass> CreateData(int nbItems)
     {
-        Random rand = new Random();
+        Random rand = new Random(42);
         var data = new List<TestClass>();
 
         for (int i = 0; i < nbItems - 1; i++)
         {
-            data.Add(new TestClass{Name = "Name", Id = rand.Next(0, 10_000)});
+            data.Add(new TestClass{Name = "Name", Id = rand.Next(0, 1000)});
         }
 
-        return data;
+        return data.OrderBy(x => x.Id).ToList();
     }
     
 }
