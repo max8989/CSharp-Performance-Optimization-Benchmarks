@@ -23,14 +23,15 @@
 |           StartsWith_Span |  7.541 ns | 0.2191 ns | 0.6355 ns |  7.301 ns | 0.0076 |      32 B |
 | StartsWith_SpanStackAlloc |  2.799 ns | 0.0584 ns | 0.0518 ns |  2.813 ns |      - |         - |
 
-## Search Collection<int>
-|                       Method |        Mean |     Error |      StdDev |      Median | Allocated |
-|----------------------------- |------------:|----------:|------------:|------------:|----------:|
-|                     Contains | 14,940.6 us | 666.12 us | 1,943.09 us | 14,563.6 us |    4600 B |
-|                      HashSet |  1,439.9 us | 210.63 us |   614.41 us |  1,424.4 us |   28288 B |
-|                 BinarySearch |  2,003.2 us | 188.44 us |   549.68 us |  2,114.3 us |    4098 B |
-|            BinarySearch_Span |    848.4 us |  28.57 us |    80.10 us |    825.6 us |    4097 B |
-| BinarySearch_Span_StackAlloc |    778.3 us |  20.13 us |    56.77 us |    765.0 us |         - |
+## Search Collection<int> 500,000 items with 10,000 lookup values
+|                            Method |       Mean |     Error |    StdDev |   Gen0 | Allocated |
+|---------------------------------- |-----------:|----------:|----------:|-------:|----------:|
+|                          Contains | 573.185 ms | 3.1400 ms | 2.9372 ms |      - |   41032 B |
+|                           HashSet |   6.619 ms | 0.0473 ms | 0.0420 ms | 7.8125 |   58743 B |
+|                 Sort_BinarySearch |  16.249 ms | 0.0655 ms | 0.0580 ms |      - |   40125 B |
+|            Sort_BinarySearch_Span |  14.579 ms | 0.0300 ms | 0.0251 ms |      - |   40111 B |
+| Sort_BinarySearch_Span_StackAlloc |  14.540 ms | 0.0180 ms | 0.0151 ms |      - |      15 B |
+
 
 
   - Mean      : Arithmetic mean of all measurements
