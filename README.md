@@ -33,6 +33,13 @@
 | BinarySearch_Span_StackAlloc |    778.3 us |  20.13 us |    56.77 us |    765.0 us |         - |
 
 
+  - Mean      : Arithmetic mean of all measurements
+  - Error     : Half of 99.9% confidence interval
+  - StdDev    : Standard deviation of all measurements
+  - Median    : Value separating the higher half of all measurements (50th percentile)
+  - Allocated : Allocated memory per single operation (managed only, inclusive, 1KB = 1024B)
+   - 1 us      : 1 Microsecond (0.000001 sec)
+  - 1 ns      : 1 Nanosecond
 
 
 
