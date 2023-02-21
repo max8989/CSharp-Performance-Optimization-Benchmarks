@@ -23,23 +23,15 @@
 |           StartsWith_Span |  7.541 ns | 0.2191 ns | 0.6355 ns |  7.301 ns | 0.0076 |      32 B |
 | StartsWith_SpanStackAlloc |  2.799 ns | 0.0584 ns | 0.0518 ns |  2.813 ns |      - |         - |
 
-## Search Collection<int> (10,000 lookup values)
-|                       Method |       Mean |     Error |    StdDev |     Median |   Gen0 | Allocated |
-|----------------------------- |-----------:|----------:|----------:|-----------:|-------:|----------:|
-|                     Contains | 5,218.0 us | 100.02 us | 111.17 us | 5,210.0 us |      - |    4103 B |
-|                      HashSet |   286.1 us |   4.90 us |   8.57 us |   285.0 us | 4.3945 |   27784 B |
-|                 BinarySearch | 1,555.8 us |  35.38 us | 103.20 us | 1,588.0 us |      - |    4098 B |
-|            BinarySearch_Span | 1,263.0 us |  25.04 us |  50.59 us | 1,271.7 us |      - |    4098 B |
-| BinarySearch_Span_StackAlloc | 1,463.1 us |  37.52 us | 107.65 us | 1,473.4 us |      - |       2 B |
-  
-## Search Collection<int> (5,000 lookup values)
-|                       Method |      Mean |    Error |   StdDev |   Gen0 |   Gen1 | Allocated |
-|----------------------------- |----------:|---------:|---------:|-------:|-------:|----------:|
-|                     Contains | 130.79 us | 1.783 us | 1.751 us | 3.1738 |      - |   20096 B |
-|                      HashSet | 118.71 us | 0.980 us | 0.916 us | 9.2773 | 0.4883 |   58736 B |
-|                 BinarySearch |  24.84 us | 0.493 us | 0.888 us | 3.1738 |      - |   20096 B |
-|            BinarySearch_Span |  22.78 us | 0.446 us | 0.513 us | 3.1738 |      - |   20096 B |
-| BinarySearch_Span_StackAlloc |  17.80 us | 0.042 us | 0.033 us |      - |      - |         - |
+## Search Collection<int>
+|                       Method |        Mean |     Error |      StdDev |      Median | Allocated |
+|----------------------------- |------------:|----------:|------------:|------------:|----------:|
+|                     Contains | 14,940.6 us | 666.12 us | 1,943.09 us | 14,563.6 us |    4600 B |
+|                      HashSet |  1,439.9 us | 210.63 us |   614.41 us |  1,424.4 us |   28288 B |
+|                 BinarySearch |  2,003.2 us | 188.44 us |   549.68 us |  2,114.3 us |    4098 B |
+|            BinarySearch_Span |    848.4 us |  28.57 us |    80.10 us |    825.6 us |    4097 B |
+| BinarySearch_Span_StackAlloc |    778.3 us |  20.13 us |    56.77 us |    765.0 us |         - |
+
 
 
 
