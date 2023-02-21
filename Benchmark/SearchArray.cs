@@ -1,93 +1,112 @@
+using System.Runtime.InteropServices.JavaScript;
 using BenchmarkDotNet.Attributes;
 
 namespace Benchmark;
 
-
 [MemoryDiagnoser]
 public class SearchArray
 {
-    private List<TestClass> testData;
-    private List<TestClass> lookupData;
+    private List<TestClass> _testData;
+    private List<TestClass> _lookupData;
+
     public SearchArray()
     {
-        testData = CreateData(100_000);
-        lookupData = CreateData(5_000);
+        _testData = CreateData(1_000_000);
+        _lookupData = CreateData(100_000);
     }
-    
+
     [Benchmark]
     public void Contains()
     {
-        var lookupDataInt = lookupData.Select(x => x.Id).ToArray();
-        
-        //testData.Where(x => lookupDataInt.Contains(x.Id)).ToList();
-        for (int i = 0; i < testData.Count; i++)
-            if(lookupDataInt.Contains(testData[i].Id))
-                testData.RemoveAt(i);
+        var lookupDataInt = _lookupData
+            .Select(x => x.Id)
+            .ToArray();
+
+        for (int i = 0; i < _testData.Count - 1; i++)
+        {
+            if (lookupDataInt.Contains(_testData[i].Id))
+                _testData.RemoveAt(i);
+        }
     }
-    
+
     [Benchmark]
     public void HashSet()
     {
-        var lookupDataInt = lookupData.Select(x => x.Id).ToHashSet();
-        
-        //testData.Where(x => lookupDataInt.Contains(x.Id)).ToList();
-        for (int i = 0; i < testData.Count; i++)
-            if(lookupDataInt.Contains(testData[i].Id))
-                testData.RemoveAt(i);
+        var lookupDataInt = _lookupData
+            .Select(x => x.Id)
+            .ToHashSet();
+
+        for (int i = 0; i < _testData.Count - 1; i++)
+        {
+            if (lookupDataInt.Contains(_testData[i].Id))
+                _testData.RemoveAt(i);
+        }
     }
-    
+
     [Benchmark]
-    public void BinarySearch()
+    public void Sort_BinarySearch()
     {
-        var lookupDataInt = lookupData.Select(x => x.Id).ToArray();
-            
-        //testData.Where(x => lookupDataInt.Contains(x.Id)).ToList();
-        for (int i = 0; i < testData.Count; i++)
-            if(Array.BinarySearch(lookupDataInt, testData[i].Id) > 0)
-                testData.RemoveAt(i);
+        var lookupDataInt = _lookupData
+            .Select(x => x.Id)
+            .ToArray();
+
+        Array.Sort(lookupDataInt);
+
+        for (int i = 0; i < _testData.Count - 1; i++)
+        {
+            if (Array.BinarySearch(lookupDataInt, _testData[i].Id) > 0)
+                _testData.RemoveAt(i);
+        }
     }
-    
+
     [Benchmark]
-    public void BinarySearch_Span()
+    public void Sort_BinarySearch_Span()
     {
-        Span<int> lookupDataInt =  lookupData.Select(x => x.Id).ToArray().AsSpan();
-        
-        for (int i = 0; i < testData.Count; i++)
-            if(lookupDataInt.BinarySearch(testData[i].Id) > 0)
-                testData.RemoveAt(i);
+        Span<int> lookupDataInt = _lookupData
+            .Select(x => x.Id)
+            .ToArray()
+            .AsSpan();
+
+        lookupDataInt.Sort();
+
+        for (int i = 0; i < _testData.Count - 1; i++)
+        {
+            if (lookupDataInt.BinarySearch(_testData[i].Id) > 0)
+                _testData.RemoveAt(i);
+        }
     }
-    
+
     [Benchmark]
-    public void BinarySearch_Span_StackAlloc()
+    public void Sort_BinarySearch_Span_StackAlloc()
     {
-        Span<int> lookupDataInt = stackalloc int[lookupData.Count];
-        for (int i = 0; i < lookupData.Count - 1; i++)
-            lookupDataInt[i] = lookupData[i].Id;
-        
-        for (int i = 0; i < testData.Count; i++)
-            if(lookupDataInt.BinarySearch(testData[i].Id) > 0)
-                testData.RemoveAt(i);
+        Span<int> lookupDataInt = stackalloc int[_lookupData.Count];
+
+        for (int i = 0; i < _lookupData.Count - 1; i++)
+            lookupDataInt[i] = _lookupData[i].Id;
+
+        lookupDataInt.Sort();
+
+        for (int i = 0; i < _testData.Count - 1; i++)
+        {
+            if (lookupDataInt.BinarySearch(_testData[i].Id) > 0)
+                _testData.RemoveAt(i);
+        }
     }
-    
-    
-    
-    public List<TestClass> CreateData(int nbItems)
+
+
+    private List<TestClass> CreateData(int nbItems)
     {
         Random rand = new Random(42);
-        var data = new List<TestClass>();
 
-        for (int i = 0; i < nbItems - 1; i++)
-        {
-            data.Add(new TestClass{Name = "Name", Id = rand.Next(0, 1000)});
-        }
-
-        return data.OrderBy(x => x.Id).ToList();
+        return Enumerable.Range(1, nbItems)
+            .Select(x => new TestClass { Id = rand.Next(0, nbItems / 10) })
+            .ToList();
+        
     }
-    
 }
 
 public class TestClass
 {
-    public string Name { get; init; } = default!;
+    public string Name { get; init; } = "Name";
     public int Id { get; init; }
 }
