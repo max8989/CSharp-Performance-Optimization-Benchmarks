@@ -25,7 +25,7 @@
 | StartsWith_SpanStackAlloc |  2.799 ns | 0.0584 ns | 0.0518 ns |  2.813 ns |      - |         - |
 
 ## Search Collection<int> 
-### 1 million items with 10,000 lookup values
+- 1 million items with 10,000 lookup values
 
 |                            Method |        Mean |     Error |    StdDev | Allocated |
 |---------------------------------- |------------:|----------:|----------:|----------:|
@@ -35,7 +35,7 @@
 |            Sort_BinarySearch_Span |    28.79 ms |  0.170 ms |  0.142 ms |   40125 B |
 | Sort_BinarySearch_Span_StackAlloc |    28.99 ms |  0.118 ms |  0.158 ms |      29 B |
 
-### 500,000 items with 10,000 lookup values
+- 500,000 items with 10,000 lookup values
 
 |                            Method |       Mean |     Error |    StdDev |   Gen0 | Allocated |
 |---------------------------------- |-----------:|----------:|----------:|-------:|----------:|
@@ -45,7 +45,7 @@
 |            Sort_BinarySearch_Span |  14.579 ms | 0.0300 ms | 0.0251 ms |      - |   40111 B |
 | Sort_BinarySearch_Span_StackAlloc |  14.540 ms | 0.0180 ms | 0.0151 ms |      - |      15 B |
 
-### 100,000 items with 10,000 lookup values
+- 100,000 items with 10,000 lookup values
 
 |                            Method |       Mean |     Error |    StdDev |   Gen0 | Allocated |
 |---------------------------------- |-----------:|----------:|----------:|-------:|----------:|
@@ -55,7 +55,7 @@
 |            Sort_BinarySearch_Span |   4.607 ms | 0.0369 ms | 0.0345 ms |      - |   40103 B |
 | Sort_BinarySearch_Span_StackAlloc |   4.653 ms | 0.0726 ms | 0.0679 ms |      - |       7 B |
 
-### 20 items with 10 lookup values
+- 20 items with 10 lookup values
 
 |                            Method |     Mean |   Error |  StdDev |   Gen0 | Allocated |
 |---------------------------------- |---------:|--------:|--------:|-------:|----------:|
@@ -65,7 +65,7 @@
 |            Sort_BinarySearch_Span | 177.5 ns | 0.88 ns | 0.78 ns | 0.0215 |     136 B |
 | Sort_BinarySearch_Span_StackAlloc | 125.6 ns | 0.67 ns | 0.62 ns |      - |         - |
 
-### 1,000 items with 100,000 lookup values
+- 1,000 items with 100,000 lookup values
 
 |                            Method |       Mean |     Error |    StdDev |     Gen0 |     Gen1 |     Gen2 | Allocated |
 |---------------------------------- |-----------:|----------:|----------:|---------:|---------:|---------:|----------:|
