@@ -3,7 +3,7 @@
 
 ## 📋 Overview
 
-We had a search microservice that was causing serious performance issues - taking **1 minute to execute** and consuming **1GB of memory per request**. 
+We had a web application built with microservices where the search functionality was causing serious performance issues - taking **1 minute to execute** and consuming **1GB of memory per request**. 
 
 While Kubernetes scaling provided a temporary solution, we needed to address the underlying problem. By applying modern C# performance techniques in .NET 6 like `Span<T>`, stack allocation, and efficient data structures, we achieved significant improvements:
 
