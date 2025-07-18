@@ -3,7 +3,9 @@
 
 ## 📋 Overview
 
-This repository contains performance benchmarks that helped solve a critical production issue where a search microservice was taking **1 minute to execute** and consuming **1GB of memory per request**. Through systematic optimization using modern C# features like `Span<T>`, stack allocation, and efficient data structures, we achieved:
+We had a search microservice that was causing serious performance issues - taking **1 minute to execute** and consuming **1GB of memory per request**. 
+
+While Kubernetes scaling provided a temporary solution, we needed to address the underlying problem. By applying modern C# performance techniques in .NET 6 like `Span<T>`, stack allocation, and efficient data structures, we achieved significant improvements:
 
 - **🏃‍♂️ 80% faster query execution**
 - **💾 75% reduction in memory usage**
