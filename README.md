@@ -13,7 +13,7 @@ While Kubernetes scaling provided a temporary solution, we needed to address the
 
 While Kubernetes helped us scale temporarily, these code-level optimizations provided the fundamental performance improvements needed for long-term sustainability.
 
-##Code Example: The Power of Modern C#
+## Code Example: The Power of Modern C#
 
 Here's a real example from our benchmarks showing how we transformed a simple string operation:
 
@@ -61,7 +61,7 @@ public bool StartsWith_SpanStackAlloc()
 
 ## Benchmark Categories
 
-### 🏷️ [Enum Performance](Benchmark/EnumBenchmarks.cs)
+### [Enum Performance](Benchmark/EnumBenchmarks.cs)
 Comparing enum-to-string conversion methods to avoid boxing and allocation overhead.
 
 |                Method |      Mean |     Error |    StdDev |   Gen0 | Allocated |
