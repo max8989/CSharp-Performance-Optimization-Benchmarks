@@ -1,19 +1,19 @@
 
-# 🚀 C# Performance Optimization Benchmarks
+# C# Performance Optimization Benchmarks
 
-## 📋 Overview
+## Overview
 
 We had a web application built with microservices where the search functionality was causing serious performance issues - taking **1 minute to execute** and consuming **1GB of memory per request**. 
 
 While Kubernetes scaling provided a temporary solution, we needed to address the underlying problem. By applying modern C# performance techniques in .NET 6 like `Span<T>`, stack allocation, and efficient data structures, we achieved significant improvements:
 
-- **🏃‍♂️ 80% faster query execution**
-- **💾 75% reduction in memory usage**
-- **📈 Dramatically improved scalability**
+- **80% faster query execution**
+- **75% reduction in memory usage**
+- **Dramatically improved scalability**
 
 While Kubernetes helped us scale temporarily, these code-level optimizations provided the fundamental performance improvements needed for long-term sustainability.
 
-## 💻 Code Example: The Power of Modern C#
+##Code Example: The Power of Modern C#
 
 Here's a real example from our benchmarks showing how we transformed a simple string operation:
 
@@ -59,7 +59,7 @@ public bool StartsWith_SpanStackAlloc()
 
 **Result**: 13x performance improvement with zero memory allocation! 🎯
 
-## 🔬 Benchmark Categories
+## Benchmark Categories
 
 ### 🏷️ [Enum Performance](Benchmark/EnumBenchmarks.cs)
 Comparing enum-to-string conversion methods to avoid boxing and allocation overhead.
@@ -69,11 +69,11 @@ Comparing enum-to-string conversion methods to avoid boxing and allocation overh
 |          EnumToString | 15.299 ns | 0.2271 ns | 0.2124 ns | 0.0057 |      24 B |
 |   EnumToString_Switch |  3.890 ns | 0.1341 ns | 0.1744 ns |      - |         - |
 
-**💡 Key Insight**: Switch expressions eliminate memory allocation and provide 4x better performance than `ToString()`.
+** Key Insight**: Switch expressions eliminate memory allocation and provide 4x better performance than `ToString()`.
 
 ---
 
-### 🆔 [GUID Operations with Span](Benchmark/GuiderBenchmarks.cs)
+### [GUID Operations with Span](Benchmark/GuiderBenchmarks.cs)
 Optimizing GUID-to-string conversions using `Span<T>` for zero-allocation operations.
 
 |                Method |      Mean |    Error |   StdDev |   Gen0 | Allocated |
@@ -83,11 +83,11 @@ Optimizing GUID-to-string conversions using `Span<T>` for zero-allocation operat
 |       ToStringFromGuid | 110.19 ns | 2.224 ns | 3.045 ns | 0.0439 |     184 B |
 |  ToStringFromGuid_Span |  60.48 ns | 1.233 ns | 1.467 ns | 0.0172 |      72 B |
 
-**💡 Key Insight**: `Span<T>` operations provide 40-50% performance improvement with significantly reduced allocations.
+**Key Insight**: `Span<T>` operations provide 40-50% performance improvement with significantly reduced allocations.
 
 ---
 
-### 📝 [String Operations](Benchmark/StringBenchmarks.cs)
+### [String Operations](Benchmark/StringBenchmarks.cs)
 Comparing string StartsWith operations using different memory allocation strategies.
 
 |                    Method |      Mean |     Error |    StdDev |    Median |   Gen0 | Allocated |
@@ -96,14 +96,14 @@ Comparing string StartsWith operations using different memory allocation strateg
 |           StartsWith_Span |  7.541 ns | 0.2191 ns | 0.6355 ns |  7.301 ns | 0.0076 |      32 B |
 | StartsWith_SpanStackAlloc |  2.799 ns | 0.0584 ns | 0.0518 ns |  2.813 ns |      - |         - |
 
-**💡 Key Insight**: Stack allocation with `Span<T>` provides 13x better performance with zero heap allocation.
+**Key Insight**: Stack allocation with `Span<T>` provides 13x better performance with zero heap allocation.
 
 ---
 
-### 🔍 [Collection Search Optimization](Benchmark/SearchArray.cs) - **The Game Changer**
+### [Collection Search Optimization](Benchmark/SearchArray.cs) - **The Game Changer**
 This benchmark directly addresses our production search performance issues across different data sizes.
 
-#### 📊 Performance Results by Collection Size
+#### Performance Results by Collection Size
 
 <details>
 <summary><strong>🔴 1 Million Items (10,000 lookups)</strong></summary>
@@ -170,14 +170,14 @@ This benchmark directly addresses our production search performance issues acros
 
 </details>
 
-**💡 Key Insights**: 
+** Key Insights**: 
 - **HashSet**: Provides the best performance for large collections with excellent O(1) lookup time
 - **Span + Stack Allocation**: Minimizes memory pressure and GC overhead
 - **Algorithm choice matters**: The difference between O(n) and O(log n) operations becomes critical at scale
 
 ---
 
-## 📊 Benchmark Legend
+## Benchmark Legend
 
 | Metric | Description |
 |--------|-------------|
@@ -195,14 +195,14 @@ This benchmark directly addresses our production search performance issues acros
 
 ---
 
-## 🛠️ Running the Benchmarks
+##  Running the Benchmarks
 
 ```bash
 cd Benchmark
 dotnet run -c Release
 ```
 
-## 🎯 Real-World Impact
+## Real-World Impact
 
 These optimizations transformed our production environment:
 
