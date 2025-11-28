@@ -18,7 +18,7 @@ While Kubernetes helped us scale temporarily, these code-level optimizations pro
 Here's a real example from our benchmarks showing how we transformed a simple string operation:
 
 ```csharp
-// ❌ Original approach: 37.6 ns, heap allocation
+// Original approach: 37.6 ns, heap allocation
 [Benchmark]
 public bool StartsWith_Original()
 {
@@ -26,7 +26,7 @@ public bool StartsWith_Original()
     return INPUT.StartsWith(comparisonString);
 }
 
-// ✅ Span<T> approach: 7.5 ns, reduced allocation  
+// Span<T> approach: 7.5 ns, reduced allocation  
 [Benchmark]
 public bool StartsWith_Span() 
 {
@@ -41,7 +41,7 @@ public bool StartsWith_Span()
     return true;
 }
 
-// 🚀 Stack allocation: 2.8 ns, zero heap allocation!
+// Stack allocation: 2.8 ns, zero heap allocation!
 [Benchmark]
 public bool StartsWith_SpanStackAlloc()
 {
