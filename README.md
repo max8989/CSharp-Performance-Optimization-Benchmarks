@@ -57,7 +57,7 @@ public bool StartsWith_SpanStackAlloc()
 }
 ```
 
-**Result**: 13x performance improvement with zero memory allocation! 🎯
+**Result**: 13x performance improvement with zero memory allocation!
 
 ## Benchmark Categories
 
